@@ -9,17 +9,27 @@ namespace MiJuegoUno2022
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        byte red;
+        byte green;
+        byte blue;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            //_graphics.IsFullScreen = true;
+            _graphics.PreferredBackBufferWidth = 800;
+            _graphics.PreferredBackBufferHeight = 600;
+            _graphics.ApplyChanges();
         }
 
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            red = 100;
+            green = 20;
+            blue = 250;
+            
             base.Initialize();
         }
 
@@ -36,13 +46,16 @@ namespace MiJuegoUno2022
                 Exit();
 
             // TODO: Add your update logic here
+            red++;
+            green++;
+            blue++;
 
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(new Color(red, green, blue));
 
             // TODO: Add your drawing code here
 
