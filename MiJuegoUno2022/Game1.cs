@@ -58,11 +58,21 @@ namespace MiJuegoUno2022
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
-            red++; //red = red + 1;
-            green++;
-            blue++;
+            KeyboardState keysState = Keyboard.GetState();
 
+            // TODO: Add your update logic here
+            //red++; //red = red + 1;
+            //green++;
+            //blue++;
+
+            if(keysState.IsKeyDown(Keys.Left))
+            {
+                positionX -= 3;
+            }
+            else if (keysState.IsKeyDown(Keys.Right))
+            {
+                positionX += 3;
+            }
             base.Update(gameTime);
         }
 
