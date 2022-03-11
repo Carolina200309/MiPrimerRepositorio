@@ -12,20 +12,27 @@ namespace MiJuegoUno2022
         byte red;
         byte green;
         byte blue;
+
+        Texture2D spaceShip;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
             //_graphics.IsFullScreen = true;
+
             _graphics.PreferredBackBufferWidth = 800;
+
             _graphics.PreferredBackBufferHeight = 600;
+
             _graphics.ApplyChanges();
         }
 
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+
             red = 100;
             green = 20;
             blue = 250;
@@ -38,6 +45,7 @@ namespace MiJuegoUno2022
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            spaceShip = this.Content.Load<Texture2D>("SpaceShip");
         }
 
         protected override void Update(GameTime gameTime)
@@ -46,7 +54,7 @@ namespace MiJuegoUno2022
                 Exit();
 
             // TODO: Add your update logic here
-            red++;
+            red++; //red = red + 1;
             green++;
             blue++;
 
@@ -55,9 +63,16 @@ namespace MiJuegoUno2022
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(new Color(red, green, blue));
+            //GraphicsDevice.Clear(new Color(red, green, blue));
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
+
+            _spriteBatch.Begin();
+
+            _spriteBatch.Draw(spaceShip, new Vector2(300, 250), Color.White);
+
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
