@@ -13,6 +13,9 @@ namespace MiJuegoUno2022
         byte green;
         byte blue;
 
+        int positionX;
+        int positionY;
+
         Texture2D spaceShip;
         public Game1()
         {
@@ -36,6 +39,8 @@ namespace MiJuegoUno2022
             red = 100;
             green = 20;
             blue = 250;
+            positionX = 300;
+            positionY = 250;
             
             base.Initialize();
         }
@@ -70,7 +75,7 @@ namespace MiJuegoUno2022
 
             _spriteBatch.Begin();
 
-            _spriteBatch.Draw(spaceShip, new Vector2(300, 250), Color.White);
+            _spriteBatch.Draw(spaceShip, new Vector2(positionX, positionY), Color.White);
 
             _spriteBatch.End();
 
