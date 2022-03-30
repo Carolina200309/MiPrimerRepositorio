@@ -6,5 +6,6 @@ namespace MiJuegoUno2022
 {
     class Player
     {
+
     }
 }

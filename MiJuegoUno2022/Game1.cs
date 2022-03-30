@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace MiJuegoUno2022
 {
@@ -8,12 +10,11 @@ namespace MiJuegoUno2022
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        bool fireballSwitch;
 
         Texture2D spaceShip;
-        Texture2D fireball;
 
-        Rectangle fireballRectangle;
+        List<Fireball> fireballs;
+
         Rectangle spaceshipRectangle;
 
         public Game1()
@@ -35,9 +36,9 @@ namespace MiJuegoUno2022
         {
             // TODO: Add your initialization logic here
 
-            fireballSwitch = false;
-            fireballRectangle = new Rectangle(0, 0, 50, 50);
             spaceshipRectangle = new Rectangle(300, 250, 200, 200);
+
+            fireballs = new List<Fireball>();
 
             base.Initialize();
         }
@@ -48,7 +49,7 @@ namespace MiJuegoUno2022
 
             // TODO: use this.Content to load your game content here
             spaceShip = this.Content.Load<Texture2D>("SpaceShip");
-            fireball = this.Content.Load<Texture2D>("Fireball");
+           
         }
 
         protected override void Update(GameTime gameTime)
@@ -75,14 +76,7 @@ namespace MiJuegoUno2022
 
             else if(keysState.IsKeyDown(Keys.Space))
             {
-                fireballSwitch = true;
-                fireballRectangle.X = spaceshipRectangle.X + (spaceshipRectangle.Width/2) -25;
-                fireballRectangle.Y = spaceshipRectangle.Y +10;
-            }
-
-            if(fireballSwitch)
-            {
-                fireballRectangle.Y-=10;
+                fireballs.Add(new Fireball());
             }
 
             base.Update(gameTime);
@@ -97,10 +91,7 @@ namespace MiJuegoUno2022
 
             _spriteBatch.Begin();
 
-            if (fireballSwitch)
-            {
-                _spriteBatch.Draw(fireball, fireballRectangle, Color.White);
-            }
+            
 
             _spriteBatch.Draw(spaceShip, spaceshipRectangle, Color.White);
 
