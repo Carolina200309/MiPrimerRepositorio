@@ -4,11 +4,10 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MiJuegoUno2022
 {
-    public class         Game1 : Game
+    public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-
         bool fireballSwitch;
 
         Texture2D spaceShip;
@@ -36,11 +35,9 @@ namespace MiJuegoUno2022
         {
             // TODO: Add your initialization logic here
 
-
             fireballSwitch = false;
             fireballRectangle = new Rectangle(0, 0, 50, 50);
             spaceshipRectangle = new Rectangle(300, 250, 200, 200);
-
 
             base.Initialize();
         }
@@ -68,24 +65,24 @@ namespace MiJuegoUno2022
 
             if(keysState.IsKeyDown(Keys.Left))
             {
-                spaceshipRectangle.X -= 3;
+                spaceshipRectangle.X -= 5;
             }
             
             else if (keysState.IsKeyDown(Keys.Right))
             {
-                spaceshipRectangle.X += 3;
+                spaceshipRectangle.X += 5;
             }
 
             else if(keysState.IsKeyDown(Keys.Space))
             {
                 fireballSwitch = true;
-                fireballRectangle.X = spaceshipRectangle.X + (spaceshipRectangle.Width/2) -20;
-                fireballRectangle.Y = spaceshipRectangle.Y +15;
+                fireballRectangle.X = spaceshipRectangle.X + (spaceshipRectangle.Width/2) -25;
+                fireballRectangle.Y = spaceshipRectangle.Y +10;
             }
 
             if(fireballSwitch)
             {
-                fireballRectangle.Y-=5;
+                fireballRectangle.Y-=10;
             }
 
             base.Update(gameTime);
