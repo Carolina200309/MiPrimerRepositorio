@@ -11,34 +11,26 @@ namespace MiJuegoUno2022
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        Texture2D spaceShip;
-
-        List<Fireball> fireballs;
-
-        Rectangle spaceshipRectangle;
+        Player spaceShip;
+        Sprite fireball;
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-
             //_graphics.IsFullScreen = true;
-
             _graphics.PreferredBackBufferWidth = 800;
-
             _graphics.PreferredBackBufferHeight = 600;
-
             _graphics.ApplyChanges();
+
         }
 
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
-            spaceshipRectangle = new Rectangle(300, 250, 200, 200);
-
-            fireballs = new List<Fireball>();
+            spaceShip = new Player();
+            fireball = new Sprite("Fireball");
 
             base.Initialize();
         }
@@ -48,8 +40,9 @@ namespace MiJuegoUno2022
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            spaceShip = this.Content.Load<Texture2D>("SpaceShip");
-           
+
+            spaceShip.LoadContent(this.Content);
+            fireball.LoadContent(this.Content);
         }
 
         protected override void Update(GameTime gameTime)
@@ -60,23 +53,14 @@ namespace MiJuegoUno2022
             KeyboardState keysState = Keyboard.GetState();
 
             // TODO: Add your update logic here
-            //red++; //red = red + 1;
-            //green++;
-            //blue++;
 
-            if(keysState.IsKeyDown(Keys.Left))
+            if (keysState.IsKeyDown(Keys.Left))
             {
-                spaceshipRectangle.X -= 5;
+                spaceShip.Move(false);
             }
-            
             else if (keysState.IsKeyDown(Keys.Right))
             {
-                spaceshipRectangle.X += 5;
-            }
-
-            else if(keysState.IsKeyDown(Keys.Space))
-            {
-                fireballs.Add(new Fireball());
+                spaceShip.Move(true);
             }
 
             base.Update(gameTime);
@@ -84,20 +68,19 @@ namespace MiJuegoUno2022
 
         protected override void Draw(GameTime gameTime)
         {
-            //GraphicsDevice.Clear(new Color(red, green, blue));
+            //GraphicsDevice.Clear(new Color(red,green,blue));
             GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
-
             _spriteBatch.Begin();
 
-            
-
-            _spriteBatch.Draw(spaceShip, spaceshipRectangle, Color.White);
+            spaceShip.Draw(this._spriteBatch, Color.White);
+            fireball.Draw(this._spriteBatch, Color.White);
 
             _spriteBatch.End();
 
             base.Draw(gameTime);
         }
+
     }
 }

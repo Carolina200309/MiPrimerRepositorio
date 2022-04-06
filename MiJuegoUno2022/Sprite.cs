@@ -9,13 +9,15 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MiJuegoUno2022
 {
+
     class Sprite
     {
+
         private string sourceImageName;
 
         private Texture2D texture2D;
 
-        private Rectangle rectangle;
+        protected Rectangle rectangle;
 
         private Point location;
 
@@ -33,11 +35,17 @@ namespace MiJuegoUno2022
             set { size = value; }
         }
 
-        public string SourceImageName { get { return this.sourceImageName; } }
+        public string SourceImageName
+        {
+            get
+            {
+                return this.sourceImageName;
+            }
+        }
 
 
         /// <summary>
-        /// OJO: If you call this overload constructor you wont be able to change it later
+        /// OJO: If you call this overloaded constructor you wont be able to change it later
         /// In fact, you will have a default image displaying 'No Image'
         /// </summary>
         public Sprite() : this("NoImage")
@@ -45,12 +53,22 @@ namespace MiJuegoUno2022
 
         }
 
+        /// <summary>
+        /// Overloaded Constructor receiving the name of the external resource
+        /// </summary>
+        /// <param name="sourceImageName"> String representing the name of the external resource </param>
         public Sprite(string sourceImageName)
             : this(sourceImageName, new Point(0, 0), new Point(20, 20))
         {
 
         }
 
+        /// <summary>
+        /// Overloaded Constructor receiving name of the external resource, location and size
+        /// </summary>
+        /// <param name="sourceImageName">String representing the name of the external resource</param>
+        /// <param name="location">Class Point representing the x and y position on the screen</param>
+        /// <param name="size">Class Point representing width and height of the sprite </param>
         public Sprite(string sourceImageName, Point location, Point size)
         {
             this.sourceImageName = sourceImageName;
