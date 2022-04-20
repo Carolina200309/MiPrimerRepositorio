@@ -17,9 +17,10 @@ namespace MiJuegoUno2022
             fireballs = new List<Fireball>();
         }
 
-        public void Shoot()
+        public void Shoot(ContentManager contentManager, Point location)
         {
-            fireballs.Add(new Fireball());
+            fireballs.Add(new Fireball(contentManager, location));
+
         }
 
         /// <summary>
@@ -30,12 +31,24 @@ namespace MiJuegoUno2022
         {
             if (direction)
             {
-                this.rectangle.X += 5;
+                this.Location = new Point(this.Location.X + 5, this.Location.Y);
             }
             else
             {
-                this.rectangle.X -= 5;
+                this.Location = new Point(this.Location.X - 5, this.Location.Y);
             }
+        }
+
+        public new void Draw(SpriteBatch spriteBatch, Color color)
+        {
+            this.rectangle.Location = this.Location;
+            spriteBatch.Draw(this.texture2D, this.rectangle, color);
+
+            foreach (var item in fireballs)
+            {
+                item.Draw(spriteBatch, color);
+            }
+
         }
 
     }

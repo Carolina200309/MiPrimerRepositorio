@@ -7,20 +7,23 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace MiJuegoUno2022
- 
+
 {
     class Fireball : Sprite
     {
-
-
-        public Fireball() : base("Fireball", new Point(), new Point(50))
+        public Fireball(ContentManager contentManager) : this(contentManager, new Point())
         {
 
         }
 
+        public Fireball(ContentManager contentManager, Point location) : base("Fireball", location, new Point(50))
+        {
+            this.LoadContent(contentManager);
+        }
+
         public void MoveUp()
         {
-
+            this.rectangle.Y--;
         }
 
     }
