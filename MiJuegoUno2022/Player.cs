@@ -11,15 +11,15 @@ namespace MiJuegoUno2022
 {
     class Player : Sprite
     {
-        private List<Fireball> fireballs;
+        public List<Fireball> fireballs;
         public Player() : base("Spaceship", new Point(300, 450), new Point(200, 200))
         {
             fireballs = new List<Fireball>();
         }
 
-        public void Shoot(ContentManager contentManager, Point location)
+        public void Shoot(ContentManager content, Point location)
         {
-            fireballs.Add(new Fireball(contentManager, location));
+            fireballs.Add(new Fireball(content, location));
 
         }
 
@@ -38,18 +38,5 @@ namespace MiJuegoUno2022
                 this.Location = new Point(this.Location.X - 5, this.Location.Y);
             }
         }
-
-        public new void Draw(SpriteBatch spriteBatch, Color color)
-        {
-            this.rectangle.Location = this.Location;
-            spriteBatch.Draw(this.texture2D, this.rectangle, color);
-
-            foreach (var item in fireballs)
-            {
-                item.Draw(spriteBatch, color);
-            }
-
-        }
-
     }
 }

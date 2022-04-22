@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace MiJuegoUno2022
-
 {
     class Fireball : Sprite
     {
@@ -23,7 +22,7 @@ namespace MiJuegoUno2022
 
         public void MoveUp()
         {
-            this.rectangle.Y--;
+            this.Location = new Point(this.Location.X, this.Location.Y - 5);
         }
 
     }

@@ -12,6 +12,7 @@ namespace MiJuegoUno2022
         private SpriteBatch _spriteBatch;
 
         Player spaceShip;
+        
 
         public Game1()
         {
@@ -23,13 +24,15 @@ namespace MiJuegoUno2022
             _graphics.PreferredBackBufferHeight = 600;
             _graphics.ApplyChanges();
 
+                      
+            
         }
 
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
             spaceShip = new Player();
-
+          
 
             base.Initialize();
         }
@@ -41,7 +44,7 @@ namespace MiJuegoUno2022
             // TODO: use this.Content to load your game content here
 
             spaceShip.LoadContent(this.Content);
-
+            
         }
 
         protected override void Update(GameTime gameTime)
@@ -64,6 +67,12 @@ namespace MiJuegoUno2022
             else if (myKeyboard.IsKeyDown(Keys.Space))
             {
                 spaceShip.Shoot(this.Content, spaceShip.Location);
+                        
+            }
+
+            foreach (var item in spaceShip.fireballs)
+            {
+                item.MoveUp();
             }
 
             base.Update(gameTime);
@@ -79,7 +88,11 @@ namespace MiJuegoUno2022
 
             spaceShip.Draw(this._spriteBatch, Color.White);
 
-
+            foreach (var item in spaceShip.fireballs)
+            {
+                item.Draw(this._spriteBatch, Color.White);
+            }
+            
             _spriteBatch.End();
 
             base.Draw(gameTime);
